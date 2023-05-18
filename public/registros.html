@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registros</title>
+</head>
+
+<body align="center">
+    <a href="index.html">
+        <button>Voltar</button>
+    </a>
+    <br><br>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Data de Nascimento</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Curso</th>
+            <th>Período</th>
+            <th>Informações adicionais</th>
+        </tr>
+        <tbody id="tabela-corpo"></tbody>
+    </table>
+
+    <h1>Buscar aluno</h1>
+    <form>
+
+        <label>ID:</label><br>
+        <input type="text" id="id">
+        <br><br>
+        <label>Nome completo:</label><br>
+        <input type="text" id="nome"><br><br>
+
+        <label>Data de nascimento:</label><br>
+        <input type="date" id="dataNascimento"><br><br>
+
+        <label>CPF:</label><br>
+        <input type="text" id="cpf"><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" id="email"><br><br>
+
+        <label>Telefone:</label><br>
+        <input type="text" id="telefone"><br><br>
+
+        <label>Cursos:</label>
+        <select name="Cursos" id="curso">
+            <option></option>
+            <option>Técnico em Desenvolvimento de Sistema</option>
+            <option>Técnico em Mecatrônica</option>
+            <option>Técnico em Eletroeletrônica</option>
+            <option>Técnico em Mecânica Automotiva</option>
+        </select><br><br>
+
+        <label>Período:</label>
+        <select name="Periodos" id="periodo">
+            <option></option>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option>Noite</option>
+        </select><br><br>
+
+        <label>Informações adicionais:</label>
+        <input type="text" id="informacoesAdicionais"><br><br>
+        <input type="button" onclick="buscarDados()" value="Buscar">
+        <input type="button" onclick="deletarDados()" value="Deletar">
+        <input type="button" onclick="atualizarDados()" value="Atualizar">
+
+    </form>
+
+    <h1>Dados cadastrais</h1>
+    <span id="mostrarId"></span><br>
+    <span id="mostrarNome"></span><br>
+    <span id="mostrarData"></span><br>
+    <span id="mostrarCpf"></span><br>
+    <span id="mostrarEmail"></span><br>
+    <span id="mostrarTelefone"></span><br>
+    <span id="mostrarCurso"></span><br>
+    <span id="mostrarPeriodo"></span><br>
+    <span id="mostrarInformacoes"></span><br>
+
+
+
+
+
+
+    <script>
+        fetch('http://localhost:3000/pessoas')
+            .then(response => response.json())
+            .then(data => {
+                const tabela = document.getElementById('tabela-corpo');
+                data.forEach((objeto) => {
+                    const linha = `<tr>
+                    <td>${objeto.id}</td>
+                    <td>${objeto.nome}</td>
+                    <td>${objeto.dataNascimento}</td>
+                    <td>${objeto.cpf}</td>
+                    <td>${objeto.email}</td>
+                    <td>${objeto.telefone}</td>
+                    <td>${objeto.curso}</td>
+                    <td>${objeto.periodo}</td>
+                    <td>${objeto.informacoesAdicionais}</td>
+                </tr>`;
+                    tabela.innerHTML += linha;
+                })
+            })
+
+        //GET
+        function buscarDados() {
+            const id = document.getElementById('id').value;
+
+            fetch(`http://localhost:3000/pessoas/${id}`, {
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                        document.getElementById('mostrarId').innerHTML = "ID:" + data.id;
+                        document.getElementById('mostrarNome').innerHTML = "Nome:" + data.nome;
+                        document.getElementById('mostrarData').innerHTML = "Data de nascimento:" + data.dataNascimento;
+                        document.getElementById('mostrarCpf').innerHTML = "CPF:" + data.cpf;
+                        document.getElementById('mostrarEmail').innerHTML = "Email:" + data.email;
+                        document.getElementById('mostrarTelefone').innerHTML = "Telefone:" + data.telefone;
+                        document.getElementById('mostrarCurso').innerHTML = "Curso:" + data.curso;
+                        document.getElementById('mostrarPeriodo').innerHTML = "Período:" + data.periodo;
+                        document.getElementById('mostrarInformacoes').innerHTML = "Informações:" + data.informacoesAdicionais;
+                })
+            }
+                
+
+        //DELETE
+        function deletarDados() {
+            const id = document.getElementById('id').value;
+
+            fetch(`http://localhost:3000/pessoas/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+
+        }
+
+        //PUT
+        function atualizarDados() {
+            const id = document.getElementById('id').value;
+            const nome = document.getElementById('nome').value;
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            const cpf = document.getElementById('cpf').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const curso = document.getElementById('curso').value;
+            const periodo = document.getElementById('periodo').value;
+            const informacoesAdicionais = document.getElementById('informacoesAdicionais').value;
+
+            fetch(`http://localhost:3000/pessoas/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nome: nome, dataNascimento: dataNascimento, cpf: cpf, email: email,
+                    telefone: telefone, curso: curso, periodo: periodo,
+                    informacoesAdicionais: informacoesAdicionais
+                })
+            })
+                .then(response => response.json())
+
+        }
+    </script>
+</body>
+
+</html>

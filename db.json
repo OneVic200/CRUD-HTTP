@@ -1,0 +1,59 @@
+{
+  "pessoas": [
+    {
+      "nome": "Victor Augusto Silva Barros",
+      "dataNascimento": "2004-09-19",
+      "cpf": "371.675.728-45",
+      "email": "vicvictoraugusto1@gmail.com",
+      "telefone": "11 99853-7812",
+      "curso": "Técnico em Desenvolvimento de Sistema",
+      "periodo": "Manhã",
+      "informacoesAdicionais": "eftgegtegtegte",
+      "id": 1
+    },
+    {
+      "nome": "a",
+      "dataNascimento": "2023-03-26",
+      "cpf": "a",
+      "email": "",
+      "telefone": "",
+      "curso": "",
+      "periodo": "",
+      "informacoesAdicionais": "",
+      "id": 2
+    },
+    {
+      "nome": "a",
+      "dataNascimento": "2023-03-27",
+      "cpf": "a",
+      "email": "a",
+      "telefone": "a",
+      "curso": "Técnico em Eletroeletrônica",
+      "periodo": "Manhã",
+      "informacoesAdicionais": "a",
+      "id": 3
+    },
+    {
+      "nome": "s",
+      "dataNascimento": "2023-03-26",
+      "cpf": "000.000.000-00",
+      "email": "s@gmail.com",
+      "telefone": "4002-8922",
+      "curso": "Técnico em Desenvolvimento de Sistema",
+      "periodo": "Manhã",
+      "informacoesAdicionais": "000",
+      "id": 4
+    },
+    {
+      "nome": "Victor",
+      "dataNascimento": "2023-05-03",
+      "cpf": "11111111111111111111",
+      "email": "2222222",
+      "telefone": "222222222222",
+      "curso": "Técnico em Desenvolvimento de Sistema",
+      "periodo": "Manhã",
+      "informacoesAdicionais": "rrrrr",
+      "id": 5
+    }
+  ]
+}
