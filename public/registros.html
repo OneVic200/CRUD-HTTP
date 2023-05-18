@@ -92,7 +92,7 @@
 
 
     <script>
-        fetch('http://localhost:3000/pessoas')
+        fetch(`pessoas`)
             .then(response => response.json())
             .then(data => {
                 const tabela = document.getElementById('tabela-corpo');
@@ -116,7 +116,7 @@
         function buscarDados() {
             const id = document.getElementById('id').value;
 
-            fetch(`http://localhost:3000/pessoas/${id}`, {
+            fetch(`pessoas/${id}`, {
                 method: 'GET'
             })
                 .then(response => response.json())
@@ -139,7 +139,7 @@
         function deletarDados() {
             const id = document.getElementById('id').value;
 
-            fetch(`http://localhost:3000/pessoas/${id}`, {
+            fetch(`pessoas/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())
@@ -158,7 +158,7 @@
             const periodo = document.getElementById('periodo').value;
             const informacoesAdicionais = document.getElementById('informacoesAdicionais').value;
 
-            fetch(`http://localhost:3000/pessoas/${id}`, {
+            fetch(`pessoas/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
